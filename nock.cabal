@@ -1,0 +1,23 @@
+cabal-version:      2.4
+name:               nock
+version:            4.0
+synopsis:           Nock 4k interpreter.
+author:             Andreas Bech
+maintainer:         andreaslillevangbech@outlook.com
+
+library
+    build-depends:    base ^>=4.14.3.0
+    hs-source-dirs:   src
+    exposed-modules:
+        Nock 
+        , Nock.Parse
+        , Nock.Spec
+
+executable nock
+    main-is:          Main.hs
+
+    build-depends:    
+        base ^>=4.14.3.0
+        , nock
+    hs-source-dirs:   app
+    default-language: Haskell2010
