@@ -12,7 +12,7 @@ import Nock.Spec
 
 instance Show Noun where
     show (Atom a) = show a
-    show x@(_ :- _) = "[" ++ showCell x ++ "]"
+    show x = "[" ++ showCell x ++ "]"
         where 
             showCell (a :- b) = show a ++ " " ++ showCell b
             showCell a = show a
@@ -25,4 +25,4 @@ noun :: ReadP Noun
 noun = atom <|> cell
 
 atom = Atom . read <$> munch1 isDigit
-cell = foldr1 (:-) <$ char '[' <*> noun `sepBy1` char ' ' <* char ']'
+cell = foldr1 (:-) <$ char '[' <* skipSpaces <*> noun `sepBy1` skipSpaces <* skipSpaces <* char ']'
